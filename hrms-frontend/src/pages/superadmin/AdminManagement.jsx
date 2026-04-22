@@ -165,7 +165,7 @@ function AdminManagement() {
                   <th className="text-left px-6 py-3 font-medium">#</th>
                   <th className="text-left px-6 py-3 font-medium">Name</th>
                   <th className="text-left px-6 py-3 font-medium">Email</th>
-                  <th className="text-left px-6 py-3 font-medium">Phone</th>
+                  <th className="text-left px-6 py-3 font-medium">Designation / Dept</th>
                   <th className="text-left px-6 py-3 font-medium">Company</th>
                   <th className="text-left px-6 py-3 font-medium">Joined</th>
                   <th className="text-left px-6 py-3 font-medium">Actions</th>
@@ -180,7 +180,10 @@ function AdminManagement() {
                       <td className="px-6 py-4 text-sm text-gray-400">{index + 1}</td>
                       <td className="px-6 py-4 text-sm font-medium text-gray-800">{manager.first_name} {manager.last_name}</td>
                       <td className="px-6 py-4 text-sm text-gray-500">{manager.email}</td>
-                      <td className="px-6 py-4 text-sm text-gray-500">{manager.phone}</td>
+                      <td className="px-6 py-4">
+                        <p className="text-sm text-gray-600">{manager.designation || 'Manager'}</p>
+                        <p className="text-xs text-gray-400">{manager.department || 'General'}</p>
+                      </td>
                       <td className="px-6 py-4 text-sm text-gray-500">{manager.company_name || '—'}</td>
                       <td className="px-6 py-4 text-sm text-gray-400">{new Date(manager.created_at).toLocaleDateString('en-GB')}</td>
                       <td className="px-6 py-4">

@@ -85,6 +85,7 @@ const getManagers = async (req, res) => {
   try {
     const result = await pool.query(`
       SELECT u.id, u.first_name, u.last_name, u.email, u.phone, u.created_at,
+             u.designation, u.department,
              c.name as company_name
       FROM users u
       LEFT JOIN companies c ON u.company_id = c.id
@@ -114,12 +115,12 @@ const createAdmin = async (req, res) => {
 
 const createManager = async (req, res) => {
   try {
-    const { first_name, last_name, email, phone, password, company_id } = req.body
+    const { first_name, last_name, email, phone, password, company_id, designation, department } = req.body
     const password_hash = await bcrypt.hash(password, 10)
     const result = await pool.query(
-      `INSERT INTO users (first_name, last_name, email, phone, password_hash, role, company_id)
-       VALUES ($1,$2,$3,$4,$5,'manager',$6) RETURNING id, first_name, last_name, email`,
-      [first_name, last_name, email, phone, password_hash, company_id]
+      `INSERT INTO users (first_name, last_name, email, phone, password_hash, role, company_id, designation, department)
+       VALUES ($1,$2,$3,$4,$5,'manager',$6,$7,$8) RETURNING id, first_name, last_name, email`,
+      [first_name, last_name, email, phone, password_hash, company_id, designation, department]
     )
     res.status(201).json({ success: true, data: result.rows[0] })
   } catch (err) {
@@ -134,7 +135,8 @@ const deleteUser = async (req, res) => {
     await pool.query('DELETE FROM users WHERE id=$1', [id])
     res.json({ success: true, message: 'User removed' })
   } catch (err) {
-    res.status(500).json({ success: false, message: 'Server error' })
+    console.error('deleteUser error:', err)
+    res.status(500).json({ success: false, message: 'Server error: ' + err.message })
   }
 }
 

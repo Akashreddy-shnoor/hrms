@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS transactions (
 -- Attendance
 CREATE TABLE IF NOT EXISTS attendance (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users(id),
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   company_id INTEGER REFERENCES companies(id),
   date DATE NOT NULL,
   clock_in VARCHAR(20),
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS attendance (
 -- Leaves
 CREATE TABLE IF NOT EXISTS leaves (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users(id),
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   company_id INTEGER REFERENCES companies(id),
   leave_type VARCHAR(50) NOT NULL,
   start_date DATE NOT NULL,
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS leaves (
   days INTEGER NOT NULL,
   reason TEXT,
   status VARCHAR(20) CHECK (status IN ('Pending', 'Approved', 'Rejected')) DEFAULT 'Pending',
-  approved_by INTEGER REFERENCES users(id),
+  approved_by INTEGER REFERENCES users(id) ON DELETE SET NULL,
   created_at TIMESTAMP DEFAULT NOW()
 );
 
@@ -94,20 +94,20 @@ CREATE TABLE IF NOT EXISTS holidays (
 -- Expenses
 CREATE TABLE IF NOT EXISTS expenses (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users(id),
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   company_id INTEGER REFERENCES companies(id),
   title VARCHAR(255) NOT NULL,
   amount NUMERIC(10,2) NOT NULL,
   category VARCHAR(100),
   status VARCHAR(20) CHECK (status IN ('Pending', 'Approved', 'Rejected')) DEFAULT 'Pending',
-  approved_by INTEGER REFERENCES users(id),
+  approved_by INTEGER REFERENCES users(id) ON DELETE SET NULL,
   created_at TIMESTAMP DEFAULT NOW()
 );
 
 -- Salaries
 CREATE TABLE IF NOT EXISTS salaries (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users(id),
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   company_id INTEGER REFERENCES companies(id),
   basic NUMERIC(10,2) DEFAULT 0,
   hra NUMERIC(10,2) DEFAULT 0,
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS salaries (
 -- Payslips 
 CREATE TABLE IF NOT EXISTS payslips (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER NOT NULL REFERENCES users(id),
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   company_id INTEGER NOT NULL REFERENCES companies(id),
   month INTEGER NOT NULL CHECK (month BETWEEN 1 AND 12),
   year INTEGER NOT NULL,
@@ -184,8 +184,8 @@ CREATE TABLE IF NOT EXISTS messages (
   id SERIAL PRIMARY KEY,
   company_id INTEGER NOT NULL REFERENCES companies(id),
   conversation_key VARCHAR(100) NOT NULL,
-  sender_id INTEGER NOT NULL REFERENCES users(id),
-  receiver_id INTEGER NOT NULL REFERENCES users(id),
+  sender_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  receiver_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   message TEXT,
   file_url TEXT,
   file_name VARCHAR(255),
@@ -204,19 +204,19 @@ CREATE INDEX IF NOT EXISTS idx_messages_company_users ON messages (company_id, s
 -- Letters (HR generated letters)
 CREATE TABLE IF NOT EXISTS letters (
   id SERIAL PRIMARY KEY,
-  employee_id INTEGER REFERENCES users(id),
+  employee_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   company_id INTEGER REFERENCES companies(id),
   letter_type VARCHAR(100) NOT NULL,
   title VARCHAR(255),
   content TEXT NOT NULL,
-  generated_by INTEGER REFERENCES users(id),
+  generated_by INTEGER REFERENCES users(id) ON DELETE SET NULL,
   generated_at TIMESTAMP DEFAULT NOW()
 );
 
 -- Offboarding Requests
 CREATE TABLE IF NOT EXISTS offboarding_requests (
   id SERIAL PRIMARY KEY,
-  employee_id INTEGER REFERENCES users(id),
+  employee_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   company_id INTEGER REFERENCES companies(id),
   type VARCHAR(50) DEFAULT 'Resignation',
   reason TEXT,
@@ -231,7 +231,7 @@ CREATE TABLE IF NOT EXISTS offboarding_requests (
 -- Complaints
 CREATE TABLE IF NOT EXISTS complaints (
   id SERIAL PRIMARY KEY,
-  employee_id INTEGER REFERENCES users(id),
+  employee_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   company_id INTEGER REFERENCES companies(id),
   title VARCHAR(255) NOT NULL,
   description TEXT NOT NULL,
