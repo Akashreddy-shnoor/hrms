@@ -64,33 +64,35 @@ function EmployeeChat() {
         </div>
       )}
 
-      <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
-        <ChatList
-          title="Manager Conversation"
-          subtitle="Your dedicated one-to-one chat history lives here."
-          conversations={conversations}
-          activeConversationId={activeConversation?.user_id}
-          onSelectConversation={selectConversation}
-          loading={listLoading}
-          emptyMessage="No manager conversation is available yet."
-        />
+      <div className="h-[calc(100vh-210px)] min-h-[500px]">
+        <div className="grid h-full gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
+          <ChatList
+            title="Manager Conversation"
+            subtitle="Your dedicated one-to-one chat history lives here."
+            conversations={conversations}
+            activeConversationId={activeConversation?.user_id}
+            onSelectConversation={selectConversation}
+            loading={listLoading}
+            emptyMessage="No manager conversation is available yet."
+          />
 
-        <section className="flex min-h-[70vh] flex-col overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm">
-          <ChatWindow
-            conversation={activeConversation}
-            messages={messages}
-            currentUserId={user?.id}
-            loading={conversationLoading}
-            quickQuestions={quickQuestions}
-            onQuickQuestion={sendQuickQuestion}
-            onEditMessage={editCurrentMessage}
-          />
-          <MessageInput
-            onSend={sendCurrentMessage}
-            disabled={!activeConversation}
-            placeholder="Type a message to your manager"
-          />
-        </section>
+          <section className="flex h-full flex-col overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm">
+            <ChatWindow
+              conversation={activeConversation}
+              messages={messages}
+              currentUserId={user?.id}
+              loading={conversationLoading}
+              quickQuestions={quickQuestions}
+              onQuickQuestion={sendQuickQuestion}
+              onEditMessage={editCurrentMessage}
+            />
+            <MessageInput
+              onSend={sendCurrentMessage}
+              disabled={!activeConversation}
+              placeholder="Type a message to your manager"
+            />
+          </section>
+        </div>
       </div>
     </div>
   )

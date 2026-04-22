@@ -63,31 +63,33 @@ function ManagerMessages() {
         </div>
       )}
 
-      <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
-        <ChatList
-          title="Employee Inbox"
-          subtitle="Every employee conversation is separated and preserved."
-          conversations={conversations}
-          activeConversationId={activeConversation?.user_id}
-          onSelectConversation={selectConversation}
-          loading={listLoading}
-          emptyMessage="No employees are available for messaging yet."
-        />
+      <div className="h-[calc(100vh-210px)] min-h-[500px]">
+        <div className="grid h-full gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
+          <ChatList
+            title="Employee Inbox"
+            subtitle="Every employee conversation is separated and preserved."
+            conversations={conversations}
+            activeConversationId={activeConversation?.user_id}
+            onSelectConversation={selectConversation}
+            loading={listLoading}
+            emptyMessage="No employees are available for messaging yet."
+          />
 
-        <section className="flex min-h-[70vh] flex-col overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm">
-          <ChatWindow
-            conversation={activeConversation}
-            messages={messages}
-            currentUserId={user?.id}
-            loading={conversationLoading}
-            onEditMessage={editCurrentMessage}
-          />
-          <MessageInput
-            onSend={sendCurrentMessage}
-            disabled={!activeConversation}
-            placeholder="Reply to the selected employee"
-          />
-        </section>
+          <section className="flex h-full flex-col overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm">
+            <ChatWindow
+              conversation={activeConversation}
+              messages={messages}
+              currentUserId={user?.id}
+              loading={conversationLoading}
+              onEditMessage={editCurrentMessage}
+            />
+            <MessageInput
+              onSend={sendCurrentMessage}
+              disabled={!activeConversation}
+              placeholder="Reply to the selected employee"
+            />
+          </section>
+        </div>
       </div>
     </div>
   )

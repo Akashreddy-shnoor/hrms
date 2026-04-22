@@ -39,7 +39,7 @@ function ChatWindow({
 
   if (!conversation) {
     return (
-      <div className="flex min-h-[70vh] flex-1 items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50/40 to-white px-6 text-center">
+      <div className="flex h-full flex-1 items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50/40 to-white px-6 text-center">
         <div className="max-w-md space-y-3">
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-slate-900 text-xl font-semibold text-white">
             C

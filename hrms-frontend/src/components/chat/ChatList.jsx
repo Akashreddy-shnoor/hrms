@@ -26,7 +26,7 @@ function ChatList({
   })
 
   return (
-    <section className="flex min-h-[70vh] w-full flex-col overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm xl:max-w-sm">
+    <section className="flex h-full w-full flex-col overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm xl:max-w-sm">
       <div className="border-b border-slate-200 px-5 py-5">
         <h2 className="text-lg font-semibold text-slate-900">{title}</h2>
         <p className="mt-1 text-sm text-slate-500">{subtitle}</p>
