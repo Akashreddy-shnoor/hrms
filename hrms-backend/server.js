@@ -34,11 +34,15 @@ const initDB = async () => {
       ON messages (company_id, sender_id, receiver_id);
 
       ALTER TABLE messages ADD COLUMN IF NOT EXISTS is_edited BOOLEAN DEFAULT false;
+      ALTER TABLE messages ADD COLUMN IF NOT EXISTS conversation_key VARCHAR(100);
+      ALTER TABLE messages ADD COLUMN IF NOT EXISTS file_url TEXT;
+      ALTER TABLE messages ADD COLUMN IF NOT EXISTS file_name VARCHAR(255);
+      ALTER TABLE messages ADD COLUMN IF NOT EXISTS file_type VARCHAR(150);
     `;
     await pool.query(createTableQuery);
-    console.log('Successfully confirmed messages table exists in DB.');
+    console.log('Successfully confirmed advanced messages table exists in DB.');
   } catch (err) {
-    console.error('Error creating messages table:', err);
+    console.error('Error creating advanced messages table:', err);
   }
 }
 
