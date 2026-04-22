@@ -180,17 +180,30 @@ const updateWebsiteSettings = async (req, res) => {
       logo_url, hero_title, hero_subtitle, cta_button_text,
       cta_button_link, contact_email, contact_phone, footer_text
     } = req.body
+
     const result = await pool.query(
-      `UPDATE website_settings SET 
-       logo_url=$1, hero_title=$2, hero_subtitle=$3, cta_button_text=$4,
-       cta_button_link=$5, contact_email=$6, contact_phone=$7, footer_text=$8,
+      `INSERT INTO website_settings (id, logo_url, hero_title, hero_subtitle, cta_button_text, cta_button_link, contact_email, contact_phone, footer_text, updated_at)
+       VALUES (1, $1, $2, $3, $4, $5, $6, $7, $8, NOW())
+       ON CONFLICT (id) DO UPDATE SET 
+       logo_url=EXCLUDED.logo_url, hero_title=EXCLUDED.hero_title, hero_subtitle=EXCLUDED.hero_subtitle, cta_button_text=EXCLUDED.cta_button_text,
+       cta_button_link=EXCLUDED.cta_button_link, contact_email=EXCLUDED.contact_email, contact_phone=EXCLUDED.contact_phone, footer_text=EXCLUDED.footer_text,
        updated_at=NOW()
-       WHERE id=1 RETURNING *`,
-      [logo_url, hero_title, hero_subtitle, cta_button_text,
-        cta_button_link, contact_email, contact_phone, footer_text]
+       RETURNING *`,
+      [
+        logo_url || null, 
+        hero_title || null, 
+        hero_subtitle || null, 
+        cta_button_text || null,
+        cta_button_link || null, 
+        contact_email || null, 
+        contact_phone || null, 
+        footer_text || null
+      ]
     )
+
     res.json({ success: true, data: result.rows[0] })
   } catch (err) {
+    console.error('updateWebsiteSettings error:', err)
     res.status(500).json({ success: false, message: 'Server error' })
   }
 }
@@ -216,10 +229,11 @@ const updateProfile = async (req, res) => {
     const result = await pool.query(
       `UPDATE users SET first_name=$1, last_name=$2, phone=$3, address=$4, profile_photo=$5
        WHERE id=$6 RETURNING id, first_name, last_name, email, phone, address, profile_photo`,
-      [first_name, last_name, phone, address, profile_photo || null, req.user.id]
+      [first_name || null, last_name || null, phone || null, address || null, profile_photo || null, req.user.id]
     )
     res.json({ success: true, data: result.rows[0] })
   } catch (err) {
+    console.error('Superadmin updateProfile error:', err)
     res.status(500).json({ success: false, message: 'Server error' })
   }
 }

@@ -111,10 +111,14 @@ function EmployeeLayout({ children }) {
               <p className="text-xs text-gray-400 capitalize">{user?.role}</p>
             </div>
             <button onClick={() => navigate('/employee/profile')}
-              className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">
-              <span className="text-white font-bold text-sm">
-                {user?.first_name?.charAt(0) || 'E'}
-              </span>
+              className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 overflow-hidden">
+              {user?.profile_photo ? (
+                <img src={user.profile_photo} alt="Profile" className="w-full h-full object-cover" />
+              ) : (
+                <span className="text-white font-bold text-sm">
+                  {user?.first_name?.charAt(0) || 'E'}
+                </span>
+              )}
             </button>
           </div>
         </header>

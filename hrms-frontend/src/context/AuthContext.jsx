@@ -25,9 +25,22 @@ export function AuthProvider({ children }) {
     setUser(null)
   }
 
+  const handleSetUser = (newUserData) => {
+    if (typeof newUserData === 'function') {
+      setUser((prev) => {
+        const result = newUserData(prev)
+        localStorage.setItem('user', JSON.stringify(result))
+        return result
+      })
+    } else {
+      localStorage.setItem('user', JSON.stringify(newUserData))
+      setUser(newUserData)
+    }
+  }
+
   const value = {
     user,
-    setUser,
+    setUser: handleSetUser,
     login,
     logout,
     isLoggedIn: !!user,

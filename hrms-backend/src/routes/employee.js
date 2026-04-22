@@ -66,10 +66,11 @@ router.put('/profile', async (req, res) => {
     const { first_name, last_name, phone, address, profile_photo } = req.body
     const result = await pool.query(
       'UPDATE users SET first_name=$1, last_name=$2, phone=$3, address=$4, profile_photo=$5 WHERE id=$6 RETURNING id, first_name, last_name, email, phone, address, profile_photo',
-      [first_name, last_name, phone, address, profile_photo || null, req.user.id]
+      [first_name || null, last_name || null, phone || null, address || null, profile_photo || null, req.user.id]
     )
     res.json({ success: true, data: result.rows[0] })
   } catch (err) {
+    console.error('Employee updateProfile error:', err)
     res.status(500).json({ success: false, message: 'Server error' })
   }
 })

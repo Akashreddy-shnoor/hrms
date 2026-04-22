@@ -226,7 +226,16 @@ function SelfSalary() {
                     <td className="px-6 py-4 text-sm font-semibold text-teal-600">₹{Number(p.net_pay || 0).toLocaleString('en-IN')}</td>
                     <td className="px-6 py-4">
                       <button
-                        onClick={() => generatePayslipPDF(p, user)}
+                        onClick={async () => {
+                          try {
+                            const { default: api } = await import('../../services/api');
+                            const res = await api.get('/manager/self/profile');
+                            const liveUser = { ...user, ...res.data.data };
+                            generatePayslipPDF(p, liveUser);
+                          } catch (err) {
+                            generatePayslipPDF(p, user);
+                          }
+                        }}
                         className="text-xs bg-teal-600 hover:bg-teal-700 text-white font-semibold px-3 py-1.5 rounded-lg transition"
                       >
                         Download PDF

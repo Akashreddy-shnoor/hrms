@@ -94,10 +94,11 @@ const updateProfile = async (req, res) => {
       `UPDATE users SET first_name=$1, last_name=$2, phone=$3, address=$4, 
        designation=$5, department=$6, profile_photo=$7
        WHERE id=$8 RETURNING id, first_name, last_name, email, phone, address, designation, department, profile_photo`,
-      [first_name, last_name, phone, address, designation || null, department || null, profile_photo || null, req.user.id]
+      [first_name || null, last_name || null, phone || null, address || null, designation || null, department || null, profile_photo || null, req.user.id]
     )
     res.json({ success: true, data: result.rows[0] })
   } catch (err) {
+    console.error('Manager updateProfile error:', err)
     res.status(500).json({ success: false, message: 'Server error' })
   }
 }

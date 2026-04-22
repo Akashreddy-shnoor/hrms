@@ -8,7 +8,9 @@ function EmployeeProfile() {
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
   const [profilePhoto, setProfilePhoto] = useState(null)
-  const [formData, setFormData] = useState({ first_name: '', last_name: '', phone: '', address: '' })
+  const [formData, setFormData] = useState({ 
+    first_name: '', last_name: '', phone: '', address: '', designation: '', department: '' 
+  })
 
   useEffect(() => {
     api.get('/employee/profile')
@@ -18,7 +20,9 @@ function EmployeeProfile() {
           first_name: d?.first_name || '', 
           last_name: d?.last_name || '', 
           phone: d?.phone || '', 
-          address: d?.address || '' 
+          address: d?.address || '',
+          designation: d?.designation || '',
+          department: d?.department || ''
         })
         if (d?.profile_photo) setProfilePhoto(d.profile_photo)
       })
@@ -26,7 +30,9 @@ function EmployeeProfile() {
         setFormData({ 
           first_name: user?.first_name || '', 
           last_name: user?.last_name || '', 
-          phone: '', address: '' 
+          phone: '', address: '',
+          designation: user?.designation || '',
+          department: user?.department || ''
         })
       })
   }, [])
@@ -119,6 +125,15 @@ function EmployeeProfile() {
               )}
             </div>
           ))}
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Designation</label>
+            <p className="text-sm text-gray-400">{formData.designation || '—'} <span className="text-xs">(cannot change)</span></p>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Department</label>
+            <p className="text-sm text-gray-400">{formData.department || '—'} <span className="text-xs">(cannot change)</span></p>
+          </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
             <p className="text-sm text-gray-400">{user?.email} <span className="text-xs">(cannot change)</span></p>
