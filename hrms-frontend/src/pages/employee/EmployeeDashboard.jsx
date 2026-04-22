@@ -24,8 +24,8 @@ function EmployeeDashboard() {
       const res = await getMyAttendance()
       const records = res.data.data.slice(0, 5)
       setRecentAttendance(records)
-      const today = new Date().toLocaleDateString('en-CA')
-      const todayRecord = records.find(r => new Date(r.date).toLocaleDateString('en-CA') === today)
+      const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' })
+      const todayRecord = records.find(r => r.date?.startsWith(today))
       if (todayRecord) {
         setClockInTime(todayRecord.clock_in)
         if (todayRecord.clock_out) {

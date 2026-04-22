@@ -20,7 +20,7 @@ const getAttendance = async (req, res) => {
 // Employee — clock in
 const clockIn = async (req, res) => {
   try {
-    const today = new Date().toISOString().split('T')[0]
+    const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' })
     const existing = await pool.query(
       'SELECT * FROM attendance WHERE user_id=$1 AND date=$2',
       [req.user.id, today]
@@ -39,7 +39,7 @@ const clockIn = async (req, res) => {
         })
       }
     }
-    const now = new Date().toTimeString().split(' ')[0]
+    const now = new Date().toLocaleTimeString('en-GB', { timeZone: 'Asia/Kolkata', hour12: false })
     const result = await pool.query(
       `INSERT INTO attendance (user_id, company_id, date, clock_in, status)
        VALUES ($1,$2,$3,$4,'Present') RETURNING *`,
@@ -54,7 +54,7 @@ const clockIn = async (req, res) => {
 // Employee — clock out
 const clockOut = async (req, res) => {
   try {
-    const today = new Date().toISOString().split('T')[0]
+    const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' })
     const existing = await pool.query(
       'SELECT * FROM attendance WHERE user_id=$1 AND date=$2',
       [req.user.id, today]
@@ -71,7 +71,7 @@ const clockOut = async (req, res) => {
         message: 'You have already clocked out today.'
       })
     }
-    const now = new Date().toTimeString().split(' ')[0]
+    const now = new Date().toLocaleTimeString('en-GB', { timeZone: 'Asia/Kolkata', hour12: false })
     const result = await pool.query(
       `UPDATE attendance SET clock_out=$1 WHERE user_id=$2 AND date=$3 RETURNING *`,
       [now, req.user.id, today]

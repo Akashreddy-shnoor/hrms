@@ -113,16 +113,20 @@ const saveAttachment = async (attachment) => {
 }
 
 const getPrimaryManagerForEmployee = async (companyId, employeeId) => {
-  const result = await pool.query(
-    `SELECT id, first_name, last_name, email, role, department, designation
-     FROM users
-     WHERE company_id = $1 AND role = 'manager' AND is_active = true AND id <> $2
-     ORDER BY created_at ASC, id ASC
-     LIMIT 1`,
-    [companyId, employeeId]
-  )
-
-  return result.rows[0] || null
+  try {
+    const result = await pool.query(
+      `SELECT id, first_name, last_name, email, role, department, designation
+       FROM users
+       WHERE company_id = $1 AND role = 'manager' AND is_active = true AND id <> $2
+       ORDER BY created_at ASC, id ASC
+       LIMIT 1`,
+      [companyId, employeeId]
+    )
+    return result.rows[0] || null
+  } catch (err) {
+    console.error('getPrimaryManagerForEmployee error:', err)
+    return null
+  }
 }
 
 const getManagerById = async (companyId, managerId, currentUserId) => {
