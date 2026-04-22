@@ -34,18 +34,18 @@ function ManagerMessages() {
           </p>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-2 flex-shrink-0">
-          <div className="rounded-[28px] border border-slate-200 bg-white px-5 py-4 shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+        <div className="grid gap-2 sm:grid-cols-2 flex-shrink-0">
+          <div className="rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm">
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
               Unread
             </p>
-            <p className="mt-1 text-2xl font-bold text-slate-900">{unreadCount}</p>
+            <p className="text-xl font-bold text-slate-900">{unreadCount}</p>
           </div>
-          <div className="rounded-[28px] border border-slate-200 bg-white px-5 py-4 shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+          <div className="rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm">
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
               Employee Chats
             </p>
-            <p className="mt-1 text-2xl font-bold text-slate-900">{conversations.length}</p>
+            <p className="text-xl font-bold text-slate-900">{conversations.length}</p>
           </div>
         </div>
       </div>
