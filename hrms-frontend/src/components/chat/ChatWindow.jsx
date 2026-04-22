@@ -54,7 +54,7 @@ function ChatWindow({
   }
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col">
+    <div className="flex h-full flex-1 flex-col overflow-hidden">
       <div className="border-b border-slate-200 bg-white px-6 py-5">
         <div className="flex items-center gap-4">
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
