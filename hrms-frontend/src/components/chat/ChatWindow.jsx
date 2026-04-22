@@ -110,7 +110,7 @@ function ChatWindow({
             </div>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-2">
             {messages.map(message => {
               const isOwnMessage = Number(message.sender_id) === Number(currentUserId)
               const attachmentUrl = resolveMessageFileUrl(message.file_url)
@@ -120,7 +120,7 @@ function ChatWindow({
               return (
                 <div key={message.id} className={`flex ${isOwnMessage ? 'justify-end' : 'justify-start'}`}>
                   <div
-                    className={`group relative max-w-[85%] rounded-[28px] px-4 py-3 shadow-sm sm:max-w-[75%] border border-slate-200 bg-white text-slate-800 ${
+                    className={`group relative max-w-[85%] rounded-2xl px-3.5 py-2 shadow-sm sm:max-w-[75%] border border-slate-200 bg-white text-slate-800 ${
                       isOwnMessage ? 'rounded-tr-none' : 'rounded-tl-none'
                     }`}
                   >
@@ -175,7 +175,7 @@ function ChatWindow({
                       </a>
                     )}
 
-                    <div className={`mt-3 flex items-center gap-2 text-[11px] text-slate-400`}>
+                    <div className={`mt-1.5 flex items-center gap-2 text-[10px] text-slate-400`}>
                       <span>{formatMessageTimestamp(message.created_at)}</span>
                       {message.is_edited && <span className="italic">(edited)</span>}
                       {isOwnMessage && (
