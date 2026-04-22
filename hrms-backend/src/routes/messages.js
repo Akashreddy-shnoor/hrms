@@ -14,11 +14,11 @@ router.get('/conversation', messageController.getConversation)
 // Send Message
 router.post('/', messageController.sendMessage)
 
-// Edit Message
-router.put('/:id', messageController.editMessage)
-
 // Mark Seen
 router.put('/seen', messageController.markConversationSeen)
+
+// Edit Message
+router.put('/:id', messageController.editMessage)
 
 // Unread Count
 router.get('/unread-count', messageController.getUnreadMessageCount)
