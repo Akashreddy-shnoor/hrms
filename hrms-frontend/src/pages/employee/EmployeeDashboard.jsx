@@ -19,26 +19,31 @@ function EmployeeDashboard() {
     { type: 'Unpaid Leaves', total: null, used: 0, remaining: null, isUnpaid: true },
   ])
 
-  useEffect(() => {
-    getMyAttendance()
-      .then(res => {
-        const records = res.data.data.slice(0, 5)
-        setRecentAttendance(records)
-        const today = new Date().toLocaleDateString('en-CA')
-        const todayRecord = records.find(r => new Date(r.date).toLocaleDateString('en-CA') === today)
-        if (todayRecord) {
-          setClockInTime(todayRecord.clock_in)
-          if (todayRecord.clock_out) {
-            setClockOutTime(todayRecord.clock_out)
-            setClockedIn(false)
-            setClockedOut(true)
-          } else if (todayRecord.clock_in) {
-            setClockedIn(true)
-            setClockedOut(false)
-          }
+  const fetchData = async () => {
+    try {
+      const res = await getMyAttendance()
+      const records = res.data.data.slice(0, 5)
+      setRecentAttendance(records)
+      const today = new Date().toLocaleDateString('en-CA')
+      const todayRecord = records.find(r => new Date(r.date).toLocaleDateString('en-CA') === today)
+      if (todayRecord) {
+        setClockInTime(todayRecord.clock_in)
+        if (todayRecord.clock_out) {
+          setClockOutTime(todayRecord.clock_out)
+          setClockedIn(false)
+          setClockedOut(true)
+        } else if (todayRecord.clock_in) {
+          setClockedIn(true)
+          setClockedOut(false)
         }
-      })
-      .catch(err => console.error(err))
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  useEffect(() => {
+    fetchData()
 
     getMyLeaves()
       .then(res => {
@@ -60,10 +65,8 @@ function EmployeeDashboard() {
 
   const handleClockIn = async () => {
     try {
-      const res = await clockIn()
-      setClockInTime(res.data.data.clock_in)
-      setClockedIn(true)
-      setClockedOut(false)
+      await clockIn()
+      fetchData()
     } catch (err) {
       alert(err.response?.data?.message || 'Already clocked in today')
     }
@@ -71,10 +74,8 @@ function EmployeeDashboard() {
 
   const handleClockOut = async () => {
     try {
-      const res = await clockOut()
-      setClockOutTime(res.data.data.clock_out)
-      setClockedIn(false)
-      setClockedOut(true)
+      await clockOut()
+      fetchData()
     } catch (err) {
       alert(err.response?.data?.message || 'Error clocking out')
     }

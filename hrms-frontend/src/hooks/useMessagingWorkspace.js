@@ -9,7 +9,7 @@ import {
   getPredefinedQuestions
 } from '../services/messageService'
 
-const POLL_INTERVAL = 12000
+const POLL_INTERVAL = 4000
 
 const getErrorMessage = (error, fallbackMessage) => {
   return error.response?.data?.message || error.message || fallbackMessage
