@@ -27,7 +27,6 @@ services:
   - type: web
     name: hrms-frontend
     env: static
-    plan: free
     rootDir: hrms-frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
