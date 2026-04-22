@@ -1,9 +1,9 @@
 const fs = require('fs')
 const path = require('path')
 const crypto = require('crypto')
-const pool = require('../config/db')
+const pool = require('../../config/db')
 
-const MESSAGE_UPLOAD_DIR = path.join(__dirname, '..', '..', 'uploads', 'messages')
+const MESSAGE_UPLOAD_DIR = path.join(__dirname, '..', '..', '..', 'uploads', 'messages')
 const MAX_ATTACHMENT_BYTES = 5 * 1024 * 1024
 const QUICK_QUESTIONS = [
   { id: 'leave-status', text: 'How do I apply for a leave?' },

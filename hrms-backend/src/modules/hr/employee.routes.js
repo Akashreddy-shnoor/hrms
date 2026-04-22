@@ -1,15 +1,15 @@
 const express = require('express')
 const router = express.Router()
-const authenticate = require('../middleware/authenticate')
-const authorize = require('../middleware/authorize')
+const authenticate = require('../../middleware/authenticate')
+const authorize = require('../../middleware/authorize')
 
-const { getMyLeaves, applyLeave } = require('../controllers/leaveController')
-const { clockIn, clockOut, getMyAttendance } = require('../controllers/attendanceController')
-const { getMyExpenses, submitExpense } = require('../controllers/expenseController')
-const { getMySalary, getMyPayslips } = require('../controllers/salaryController')
-const { getHolidays, getPolicies } = require('../controllers/managerController')
-const { getMyLetters } = require('../controllers/lettersController')
-const { submitResignation, getMyOffboarding, raiseComplaint, getMyComplaints } = require('../controllers/offboardingController')
+const { getMyLeaves, applyLeave } = require('./leave.controller')
+const { clockIn, clockOut, getMyAttendance } = require('./attendance.controller')
+const { getMyExpenses, submitExpense } = require('../finance/expense.controller')
+const { getMySalary, getMyPayslips } = require('../finance/salary.controller')
+const { getHolidays, getPolicies } = require('../admin/manager.controller')
+const { getMyLetters } = require('./letters.controller')
+const { submitResignation, getMyOffboarding, raiseComplaint, getMyComplaints } = require('./offboarding.controller')
 
 router.use(authenticate)
 router.use(authorize('employee'))
@@ -48,7 +48,7 @@ router.get('/policies', getPolicies)
 
 // Profile
 router.get('/profile', async (req, res) => {
-  const pool = require('../config/db')
+  const pool = require('../../config/db')
   try {
     const result = await pool.query(
       'SELECT id, first_name, last_name, email, phone, address, department, designation, profile_photo FROM users WHERE id=$1',
@@ -61,7 +61,7 @@ router.get('/profile', async (req, res) => {
 })
 
 router.put('/profile', async (req, res) => {
-  const pool = require('../config/db')
+  const pool = require('../../config/db')
   try {
     const { first_name, last_name, phone, address, profile_photo } = req.body
     const result = await pool.query(
@@ -76,7 +76,7 @@ router.put('/profile', async (req, res) => {
 })
 
 router.put('/change-password', async (req, res) => {
-  const pool = require('../config/db')
+  const pool = require('../../config/db')
   const bcrypt = require('bcryptjs')
   try {
     const { current_password, new_password } = req.body

@@ -1,9 +1,9 @@
-import ChatList from '../../components/chat/ChatList'
-import ChatWindow from '../../components/chat/ChatWindow'
-import MessageInput from '../../components/chat/MessageInput'
+import ChatList from '../../features/messaging/components/ChatList'
+import ChatWindow from '../../features/messaging/components/ChatWindow'
+import MessageInput from '../../features/messaging/components/MessageInput'
 import { useAuth } from '../../context/AuthContext'
 import { useMessaging } from '../../context/MessagingContext'
-import { useMessagingWorkspace } from '../../hooks/useMessagingWorkspace'
+import { useMessagingWorkspace } from '../../features/messaging/hooks/useMessagingWorkspace'
 
 function EmployeeChat() {
   const { user } = useAuth()

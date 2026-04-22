@@ -4,7 +4,7 @@ import {
   getUserInitials,
   isImageAttachment,
   resolveMessageFileUrl
-} from '../../utils/messageUtils'
+} from '../utils/messageUtils'
 
 function ChatWindow({
   conversation,

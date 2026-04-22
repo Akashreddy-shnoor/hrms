@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const authenticate = require('../middleware/authenticate')
-const authorize = require('../middleware/authorize')
+const authenticate = require('../../middleware/authenticate')
+const authorize = require('../../middleware/authorize')
 
-const { getCompanies, createCompany, updateCompany, deleteCompany } = require('../controllers/companyController')
+const { getCompanies, createCompany, updateCompany, deleteCompany } = require('./company.controller')
 const {
   getSubscriptions, createSubscription, updateSubscription, deleteSubscription,
   getTransactions,
@@ -11,7 +11,7 @@ const {
   getContactQueries, updateQueryStatus,
   getWebsiteSettings, updateWebsiteSettings,
   getProfile, updateProfile, changePassword
-} = require('../controllers/superadminController')
+} = require('./superadmin.controller')
 
 router.use(authenticate)
 router.use(authorize('superadmin'))

@@ -3,12 +3,13 @@ const cors = require('cors')
 const path = require('path')
 require('dotenv').config()
 
-const authRoutes = require('./routes/auth')
-const superadminRoutes = require('./routes/superadmin')
-const managerRoutes = require('./routes/manager')
-const employeeRoutes = require('./routes/employee')
-const messageRoutes = require('./routes/messages')
-const publicRoutes = require('./routes/public')
+const authRoutes = require('./modules/auth/auth.routes')
+const superadminRoutes = require('./modules/admin/superadmin.routes')
+const managerRoutes = require('./modules/hr/manager.routes')
+const employeeRoutes = require('./modules/hr/employee.routes')
+const messageRoutes = require('./modules/messaging/messaging.routes')
+const publicRoutes = require('./modules/admin/public.routes')
+const profileRoutes = require('./modules/admin/profile.routes')
 
 const app = express()
 
@@ -23,6 +24,7 @@ app.use('/api/v1/manager', managerRoutes)
 app.use('/api/v1/employee', employeeRoutes)
 app.use('/api/v1/messages', messageRoutes)
 app.use('/api/v1/public', publicRoutes)
+app.use('/api/v1/profile', profileRoutes)
 
 app.get('/', (req, res) => {
   res.json({ success: true, message: 'SHNOOR HRMS API is running' })

@@ -1,4 +1,4 @@
-const pool = require('../config/db')
+const pool = require('../../config/db')
 
 // Manager — get all salaries
 const getSalaries = async (req, res) => {

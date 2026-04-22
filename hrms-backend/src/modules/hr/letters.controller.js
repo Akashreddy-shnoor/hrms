@@ -1,4 +1,4 @@
-const pool = require('../config/db')
+const pool = require('../../config/db')
 
 // Manager — generate a letter for an employee, saves to DB
 const generateLetter = async (req, res) => {

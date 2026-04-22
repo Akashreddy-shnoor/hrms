@@ -3,7 +3,7 @@ import {
   formatConversationTimestamp,
   getConversationPreview,
   getUserInitials
-} from '../../utils/messageUtils'
+} from '../utils/messageUtils'
 
 function ChatList({
   title,

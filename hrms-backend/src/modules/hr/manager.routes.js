@@ -1,17 +1,15 @@
 const express = require('express')
 const router = express.Router()
-const authenticate = require('../middleware/authenticate')
-const authorize = require('../middleware/authorize')
-const { getMyOffboarding, submitResignation, getMyComplaints, raiseComplaint } = require('../controllers/offboardingController')
-
-const { getEmployees, getEmployee, createEmployee, updateEmployee, deleteEmployee } = require('../controllers/employeeController')
-const { getLeaves, updateLeaveStatus, getMyLeaves, applyLeave } = require('../controllers/leaveController')
-const { getAttendance, clockIn, clockOut, getMyAttendance } = require('../controllers/attendanceController')
-const { getExpenses, updateExpenseStatus, getMyExpenses, submitExpense } = require('../controllers/expenseController')
-const { getSalaries, upsertSalary, getMySalary, runPayroll, getPayslipsByUser, getMyPayslips } = require('../controllers/salaryController')
-const { getHolidays, createHoliday, deleteHoliday, getPolicies, createPolicy, deletePolicy, getProfile, updateProfile, getDashboardStats } = require('../controllers/managerController')
-const { generateLetter, getLetters, getMyLetters } = require('../controllers/lettersController')
-const { getOffboardingRequests, updateOffboardingStatus, deactivateEmployee, getComplaints, respondToComplaint } = require('../controllers/offboardingController')
+const authenticate = require('../../middleware/authenticate')
+const authorize = require('../../middleware/authorize')
+const { getLeaves, updateLeaveStatus, getMyLeaves, applyLeave } = require('../hr/leave.controller')
+const { getAttendance, clockIn, clockOut, getMyAttendance } = require('../hr/attendance.controller')
+const { getExpenses, updateExpenseStatus, getMyExpenses, submitExpense } = require('../finance/expense.controller')
+const { getSalaries, upsertSalary, getMySalary, runPayroll, getPayslipsByUser, getMyPayslips } = require('../finance/salary.controller')
+const { getHolidays, createHoliday, deleteHoliday, getPolicies, createPolicy, deletePolicy, getProfile, updateProfile, getDashboardStats } = require('../admin/manager.controller')
+const { getEmployees, getEmployee, createEmployee, updateEmployee, deleteEmployee } = require('../admin/user.controller')
+const { generateLetter, getLetters, getMyLetters } = require('../hr/letters.controller')
+const { getMyOffboarding, submitResignation, getMyComplaints, raiseComplaint, getOffboardingRequests, updateOffboardingStatus, deactivateEmployee, getComplaints, respondToComplaint } = require('../hr/offboarding.controller')
 
 router.use(authenticate)
 router.use(authorize('manager'))
@@ -73,7 +71,7 @@ router.put('/offboarding/deactivate/:employee_id', deactivateEmployee)
 
 // Manager-initiated offboarding request
 router.post('/offboarding-requests', async (req, res) => {
-  const pool = require('../config/db')
+  const pool = require('../../config/db')
   try {
     const { employee_id, type, reason, last_working_day, manager_notes, requested_by, status } = req.body
     const result = await pool.query(
@@ -106,7 +104,7 @@ router.get('/self/profile', getProfile)
 router.put('/self/profile', updateProfile)
 
 router.put('/self/change-password', async (req, res) => {
-  const pool = require('../config/db')
+  const pool = require('../../config/db')
   const bcrypt = require('bcryptjs')
   try {
     const { current_password, new_password } = req.body
@@ -123,7 +121,7 @@ router.put('/self/change-password', async (req, res) => {
 
 // Manager mark attendance for employee
 router.post('/attendance/mark', async (req, res) => {
-  const pool = require('../config/db')
+  const pool = require('../../config/db')
   try {
     const { user_id, date, status, clock_in, clock_out } = req.body
     await pool.query(
@@ -144,7 +142,7 @@ router.post('/attendance/mark', async (req, res) => {
 
 // Manager edit attendance record
 router.put('/attendance/:id', async (req, res) => {
-  const pool = require('../config/db')
+  const pool = require('../../config/db')
   try {
     const { clock_in, clock_out, status } = req.body
     const result = await pool.query(
