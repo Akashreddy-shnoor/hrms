@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getHolidays } from '../../services/employeeService'
+import { getHolidays } from '../../features/hr/services/employee.service'
 
 function EmployeeHolidays() {
   const [holidays, setHolidays] = useState([])

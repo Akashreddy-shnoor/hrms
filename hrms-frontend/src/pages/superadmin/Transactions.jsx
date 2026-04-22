@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getTransactions } from '../../services/superadminService'
+import { getTransactions } from '../../features/admin/services/superadmin.service'
 
 function Badge({ status }) {
   const styles = { 'Paid': 'bg-green-50 text-green-600', 'Pending': 'bg-yellow-50 text-yellow-600', 'Failed': 'bg-red-50 text-red-500' }

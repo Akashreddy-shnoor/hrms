@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../../context/AuthContext'
-import { getSuperAdminProfile, updateSuperAdminProfile } from '../../services/superadminService'
+import { getSuperAdminProfile, updateSuperAdminProfile } from '../../features/admin/services/superadmin.service'
 
 function SuperAdminProfile() {
   const { user, setUser } = useAuth()

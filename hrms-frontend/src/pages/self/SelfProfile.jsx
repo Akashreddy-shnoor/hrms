@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../../context/AuthContext'
-import { getManagerProfile, updateManagerProfile } from '../../services/managerService'
+import { getManagerProfile, updateManagerProfile } from '../../features/hr/services/manager.service'
 
 function SelfProfile() {
   const { user, setUser } = useAuth()

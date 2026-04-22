@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getSubscriptions, createSubscription, updateSubscription, deleteSubscription } from '../../services/superadminService'
+import { getSubscriptions, createSubscription, updateSubscription, deleteSubscription } from '../../features/admin/services/superadmin.service'
 
 function Modal({ title, onClose, children }) {
   return (

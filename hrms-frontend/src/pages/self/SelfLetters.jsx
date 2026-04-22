@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getMyLetters } from '../../services/managerService'
+import { getMyLetters } from '../../features/hr/services/manager.service'
 import { useAuth } from '../../context/AuthContext'
 import { jsPDF } from 'jspdf'
 

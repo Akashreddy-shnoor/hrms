@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getPolicies, createPolicy, deletePolicy } from '../../services/managerService'
+import { getPolicies, createPolicy, deletePolicy } from '../../features/hr/services/manager.service'
 
 function Modal({ title, onClose, children }) {
   return (

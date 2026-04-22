@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getSalaries, upsertSalary, runPayroll } from '../../services/managerService'
+import { getSalaries, upsertSalary, runPayroll } from '../../features/hr/services/manager.service'
 
 // Month names for the Run Payroll modal
 const MONTHS = [

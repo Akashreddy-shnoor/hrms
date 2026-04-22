@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getPolicies } from '../../services/employeeService'
+import { getPolicies } from '../../features/hr/services/employee.service'
 
 function EmployeePolicies() {
   const [policies, setPolicies] = useState([])

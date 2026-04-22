@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getContactQueries, updateQueryStatus } from '../../services/superadminService'
+import { getContactQueries, updateQueryStatus } from '../../features/admin/services/superadmin.service'
 
 function Badge({ status }) {
   const styles = {

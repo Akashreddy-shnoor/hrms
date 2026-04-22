@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../../context/AuthContext'
-import { getManagerDashboard, getLeaves, getExpenses } from '../../services/managerService'
+import { getManagerDashboard, getLeaves, getExpenses } from '../../features/hr/services/manager.service'
 import { Link } from 'react-router-dom'
 import { useMessaging } from '../../context/MessagingContext'
 

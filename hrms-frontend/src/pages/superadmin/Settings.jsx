@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../../context/AuthContext'
-import { changePassword } from '../../services/superadminService'
+import { changePassword } from '../../features/admin/services/superadmin.service'
 
 function Settings() {
   const { user } = useAuth()

@@ -1,4 +1,4 @@
-import api from './api'
+import api from '../../../services/api'
 
 // Dashboard
 export const getManagerDashboard = () => api.get('/manager/dashboard')

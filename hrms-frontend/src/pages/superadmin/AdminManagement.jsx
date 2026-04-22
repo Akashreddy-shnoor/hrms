@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getAdmins, getManagers, createAdmin, createManager, deleteUser, getCompanies } from '../../services/superadminService'
+import { getAdmins, getManagers, createAdmin, createManager, deleteUser, getCompanies } from '../../features/admin/services/superadmin.service'
 
 function Modal({ title, onClose, children }) {
   return (

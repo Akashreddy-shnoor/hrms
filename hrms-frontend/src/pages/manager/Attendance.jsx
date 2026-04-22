@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getAttendance, getEmployees } from '../../services/managerService'
+import { getAttendance, getEmployees } from '../../features/hr/services/manager.service'
 import api from '../../services/api'
 
 function Badge({ status }) {

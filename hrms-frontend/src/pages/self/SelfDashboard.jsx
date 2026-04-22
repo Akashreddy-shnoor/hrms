@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../../context/AuthContext'
-import { clockIn, clockOut, getMyAttendance, getMyLeaves } from '../../services/managerService'
+import { clockIn, clockOut, getMyAttendance, getMyLeaves } from '../../features/hr/services/manager.service'
 
 function SelfDashboard() {
   const { user } = useAuth()

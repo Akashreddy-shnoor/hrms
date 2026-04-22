@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getCompanies, createCompany, updateCompany, deleteCompany, getSubscriptions } from '../../services/superadminService'
+import { getCompanies, createCompany, updateCompany, deleteCompany, getSubscriptions } from '../../features/admin/services/superadmin.service'
 
 function Badge({ status }) {
   const styles = {

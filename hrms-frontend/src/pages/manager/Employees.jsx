@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getEmployees, createEmployee, updateEmployee, deleteEmployee } from '../../services/managerService'
+import { getEmployees, createEmployee, updateEmployee, deleteEmployee } from '../../features/hr/services/manager.service'
 
 function Badge({ status }) {
   const styles = { 'Active': 'bg-green-50 text-green-600', 'Inactive': 'bg-red-50 text-red-500' }

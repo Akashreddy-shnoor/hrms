@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useMessaging } from '../context/MessagingContext'
+import { useMessaging } from '../../../context/MessagingContext'
 import {
   getChatList,
   getConversation,
@@ -7,7 +7,7 @@ import {
   editMessage,
   markConversationSeen,
   getPredefinedQuestions
-} from '../services/messageService'
+} from '../services/message.service'
 
 const POLL_INTERVAL = 4000
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getLeaves, updateLeaveStatus } from '../../services/managerService'
+import { getLeaves, updateLeaveStatus } from '../../features/hr/services/manager.service'
 
 function Badge({ status }) {
   const styles = { 'Pending': 'bg-yellow-50 text-yellow-600', 'Approved': 'bg-green-50 text-green-600', 'Rejected': 'bg-red-50 text-red-500' }

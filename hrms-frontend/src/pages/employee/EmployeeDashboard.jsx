@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../../context/AuthContext'
-import { clockIn, clockOut, getMyAttendance, getMyLeaves } from '../../services/employeeService'
+import { clockIn, clockOut, getMyAttendance, getMyLeaves } from '../../features/hr/services/employee.service'
 import { Link } from 'react-router-dom'
 import { useMessaging } from '../../context/MessagingContext'
 

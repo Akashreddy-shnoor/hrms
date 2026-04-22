@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getMySalary, getMyPayslips } from '../../services/employeeService'
+import { getMySalary, getMyPayslips } from '../../features/hr/services/employee.service'
 import { useAuth } from '../../context/AuthContext'
 import { jsPDF } from 'jspdf'
 

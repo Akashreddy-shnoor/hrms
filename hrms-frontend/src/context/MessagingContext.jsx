@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from 'react'
 import { useAuth } from './AuthContext'
-import { getUnreadMessageCount } from '../services/messageService'
+import { getUnreadMessageCount } from '../features/messaging/services/message.service'
 
 const MessagingContext = createContext(null)
 

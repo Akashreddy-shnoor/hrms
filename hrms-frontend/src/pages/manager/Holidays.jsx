@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getHolidays, createHoliday, deleteHoliday } from '../../services/managerService'
+import { getHolidays, createHoliday, deleteHoliday } from '../../features/hr/services/manager.service'
 
 function Modal({ title, onClose, children }) {
   return (

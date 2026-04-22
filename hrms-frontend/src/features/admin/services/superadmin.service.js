@@ -1,4 +1,4 @@
-import api from './api'
+import api from '../../../services/api'
 
 // Companies
 export const getCompanies = () => api.get('/superadmin/companies')

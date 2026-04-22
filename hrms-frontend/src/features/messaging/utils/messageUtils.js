@@ -1,4 +1,4 @@
-import api from '../services/api'
+import api from '../../../services/api'
 
 const API_ROOT = (api.defaults.baseURL || '').replace(/\/api\/v1$/, '')
 

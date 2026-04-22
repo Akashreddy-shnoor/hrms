@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getMyOffboarding, submitResignation, getMyComplaints, raiseComplaint, getMyLetters } from '../../services/employeeService'
+import { getMyOffboarding, submitResignation, getMyComplaints, raiseComplaint, getMyLetters } from '../../features/hr/services/employee.service'
 import { useAuth } from '../../context/AuthContext'
 
 function Modal({ title, onClose, children }) {

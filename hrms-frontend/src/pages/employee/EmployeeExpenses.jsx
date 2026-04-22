@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getMyExpenses, submitExpense } from '../../services/employeeService'
+import { getMyExpenses, submitExpense } from '../../features/hr/services/employee.service'
 
 function Badge({ status }) {
   const styles = { 'Pending': 'bg-yellow-50 text-yellow-600', 'Approved': 'bg-green-50 text-green-600', 'Rejected': 'bg-red-50 text-red-500' }

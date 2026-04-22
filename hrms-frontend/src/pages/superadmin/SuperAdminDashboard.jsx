@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { getCompanies } from '../../services/superadminService'
-import { getContactQueries } from '../../services/superadminService'
+import { getCompanies } from '../../features/admin/services/superadmin.service'
+import { getContactQueries } from '../../features/admin/services/superadmin.service'
 
 function StatCard({ label, value, change }) {
   return (

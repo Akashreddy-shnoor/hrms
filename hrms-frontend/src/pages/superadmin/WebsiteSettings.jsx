@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getWebsiteSettings, updateWebsiteSettings } from '../../services/superadminService'
+import { getWebsiteSettings, updateWebsiteSettings } from '../../features/admin/services/superadmin.service'
 
 function WebsiteSettings() {
   const [loading, setLoading] = useState(true)

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
-import { getEmployees, updateEmployee } from '../../services/managerService'
-import { getOffboardingRequests, updateOffboardingStatus, deactivateEmployee, getComplaints, respondToComplaint, generateLetter } from '../../services/managerService'
+import { getEmployees, updateEmployee } from '../../features/hr/services/manager.service'
+import { getOffboardingRequests, updateOffboardingStatus, deactivateEmployee, getComplaints, respondToComplaint, generateLetter } from '../../features/hr/services/manager.service'
+import api from '../../services/api'
 import { jsPDF } from 'jspdf'
 
 function Modal({ title, onClose, children }) {
@@ -116,11 +117,7 @@ function Offboarding() {
 
   const handleInitiateOffboard = async () => {
     try {
-      await fetch('http://localhost:5000/api/v1/manager/offboarding-requests', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
-        body: JSON.stringify({ employee_id: offboardTarget.id, type: 'Termination', ...offboardForm, requested_by: 'manager', status: 'In Progress' })
-      }).then(r => r.json())
+      await api.post('/manager/offboarding-requests', { employee_id: offboardTarget.id, type: 'Termination', ...offboardForm, requested_by: 'manager', status: 'In Progress' })
       setShowOffboardModal(false)
       fetchAll()
     } catch (err) { console.error(err) }

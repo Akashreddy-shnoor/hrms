@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getPolicies } from '../../services/managerService'
+import { getPolicies } from '../../features/hr/services/manager.service'
 
 function SelfPolicies() {
   const [policies, setPolicies] = useState([])
