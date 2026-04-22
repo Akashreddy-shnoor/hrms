@@ -27,14 +27,13 @@ function ChatList({
 
   return (
     <section className="flex h-full w-full flex-col overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm xl:max-w-sm">
-      <div className="border-b border-slate-200 px-5 py-5">
-        <h2 className="text-lg font-semibold text-slate-900">{title}</h2>
-        <p className="mt-1 text-sm text-slate-500">{subtitle}</p>
+      <div className="border-b border-slate-200 px-4 py-3">
+        <h2 className="text-sm font-bold text-slate-900 uppercase tracking-tight">{title}</h2>
         <input
           value={search}
           onChange={(event) => setSearch(event.target.value)}
           placeholder="Search conversations"
-          className="mt-4 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-blue-300 focus:bg-white"
+          className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-700 outline-none transition focus:border-blue-300 focus:bg-white"
         />
       </div>
 

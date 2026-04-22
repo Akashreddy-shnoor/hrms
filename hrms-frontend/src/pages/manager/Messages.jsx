@@ -25,30 +25,26 @@ function ManagerMessages() {
   })
 
   return (
-    <div className="flex flex-col h-[calc(100vh-140px)] space-y-6">
-      <div className="flex-shrink-0 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900">Messages</h1>
-          <p className="mt-1 text-sm text-slate-500">
-            Review employee conversations, track unread items, and respond from a unified inbox.
-          </p>
-        </div>
+    <div className="flex flex-col h-[calc(100vh-140px)] space-y-4">
+      <div className="flex-shrink-0 flex items-center justify-between">
+        <h1 className="text-xl font-bold text-slate-900">Messages</h1>
 
-        <div className="grid gap-2 sm:grid-cols-2 flex-shrink-0">
-          <div className="rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm">
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
-              Unread
-            </p>
-            <p className="text-xl font-bold text-slate-900">{unreadCount}</p>
+        <div className="flex gap-2 flex-shrink-0">
+          <div className="rounded-xl border border-slate-200 bg-white px-3 py-1.5 shadow-sm">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Unread</span>
+              <span className="text-lg font-bold text-slate-900">{unreadCount}</span>
+            </div>
           </div>
-          <div className="rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm">
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
-              Employee Chats
-            </p>
-            <p className="text-xl font-bold text-slate-900">{conversations.length}</p>
+          <div className="rounded-xl border border-slate-200 bg-white px-3 py-1.5 shadow-sm">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Chats</span>
+              <span className="text-lg font-bold text-slate-900">{conversations.length}</span>
+            </div>
           </div>
         </div>
       </div>
+
 
       {error && (
         <div className="flex-shrink-0 flex flex-col gap-3 rounded-[28px] border border-amber-200 bg-amber-50 px-5 py-4 text-sm text-amber-700 sm:flex-row sm:items-center sm:justify-between">

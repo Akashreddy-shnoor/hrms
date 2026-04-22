@@ -55,16 +55,16 @@ function ChatWindow({
 
   return (
     <div className="flex h-full flex-1 flex-col overflow-hidden">
-      <div className="border-b border-slate-200 bg-white px-6 py-5">
-        <div className="flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
+      <div className="border-b border-slate-200 bg-white px-5 py-2.5">
+        <div className="flex items-center gap-3">
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">
             {getUserInitials(conversation.first_name, conversation.last_name)}
           </div>
           <div className="min-w-0">
-            <h2 className="truncate text-lg font-semibold text-slate-900">
+            <h2 className="truncate text-sm font-bold text-slate-900">
               {conversation.first_name} {conversation.last_name}
             </h2>
-            <p className="truncate text-sm text-slate-500">
+            <p className="truncate text-[11px] text-slate-400 font-medium">
               {conversation.designation || conversation.email}
             </p>
           </div>

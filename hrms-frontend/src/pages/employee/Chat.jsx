@@ -27,29 +27,26 @@ function EmployeeChat() {
   })
 
   return (
-    <div className="flex flex-col h-[calc(100vh-140px)] space-y-6">
-      <div className="flex-shrink-0 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900">Chat</h1>
-          <p className="mt-1 text-sm text-slate-500">
-            Message your manager, use quick questions, and keep every conversation in one place.
-          </p>
-        </div>
+    <div className="flex flex-col h-[calc(100vh-140px)] space-y-4">
+      <div className="flex-shrink-0 flex items-center justify-between">
+        <h1 className="text-xl font-bold text-slate-900">Chat</h1>
 
-        <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm flex-shrink-0">
-          <div>
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
-              Unread
-            </p>
-            <p className="text-xl font-bold text-slate-900">{unreadCount}</p>
+        <div className="flex gap-2 flex-shrink-0">
+          <div className="rounded-xl border border-slate-200 bg-white px-3 py-1.5 shadow-sm">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Unread</span>
+              <span className="text-lg font-bold text-slate-900">{unreadCount}</span>
+            </div>
           </div>
-          <div className="h-8 w-px bg-slate-200 mx-1"></div>
-          <div>
-            <p className="text-xs font-semibold text-slate-800 leading-tight">Attachments</p>
-            <p className="text-[10px] text-slate-400">Up to 5 MB</p>
+          <div className="rounded-xl border border-slate-200 bg-white px-3 py-1.5 shadow-sm">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Files</span>
+              <span className="text-xs font-semibold text-slate-500">Supports 5MB</span>
+            </div>
           </div>
         </div>
       </div>
+
 
       {error && (
         <div className="flex-shrink-0 flex flex-col gap-3 rounded-[28px] border border-amber-200 bg-amber-50 px-5 py-4 text-sm text-amber-700 sm:flex-row sm:items-center sm:justify-between">
